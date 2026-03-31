@@ -4,6 +4,18 @@ import { initializeDatabase } from './db/postgres';
 import { emitMonitoringEvent } from './monitoring/monitoring.hooks';
 import { logger } from './utils/logger';
 
+const onUnhandledRejection = (reason: unknown): void => {
+  logger.error('unhandled_rejection', {
+    reason: reason instanceof Error ? reason.message : String(reason),
+  });
+  emitMonitoringEvent('error', 'unhandled_rejection');
+};
+
+const onUncaughtException = (error: Error): void => {
+  logger.error('uncaught_exception', { message: error.message });
+  emitMonitoringEvent('error', 'uncaught_exception', { message: error.message });
+};
+
 const startServer = async (): Promise<void> => {
   try {
     await initializeDatabase();
@@ -27,6 +39,8 @@ const startServer = async (): Promise<void> => {
   }
 };
 
+process.on('unhandledRejection', onUnhandledRejection);
+process.on('uncaughtException', onUncaughtException);
 process.on('unhandledRejection', (reason) => {
   logger.error('unhandled_rejection', {
     reason: reason instanceof Error ? reason.message : String(reason),
