@@ -21,4 +21,8 @@ export const userStore = {
     usersByEmail.set(normalizedEmail, user);
     return user;
   },
+
+  clear(): void {
+    usersByEmail.clear();
+  },
 };

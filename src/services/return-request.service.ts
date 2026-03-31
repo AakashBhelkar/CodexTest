@@ -16,6 +16,10 @@ export const createReturnRequest = async (
         user_id,
         reason,
         product_category,
+        payment_type,
+        decision,
+        fraud_detected
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
         payment_type
       ) VALUES ($1, $2, $3, $4, $5, $6)
     `,
@@ -26,6 +30,8 @@ export const createReturnRequest = async (
       input.reason,
       input.product_category,
       input.payment_type,
+      'review',
+      false,
     ],
   );
 

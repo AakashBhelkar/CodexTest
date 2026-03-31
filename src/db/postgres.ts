@@ -27,6 +27,18 @@ export const initializeDatabase = async (): Promise<void> => {
     'CREATE INDEX IF NOT EXISTS idx_return_requests_order_id ON return_requests(order_id);',
   );
 
+  await pool.query(
+    "ALTER TABLE return_requests ADD COLUMN IF NOT EXISTS decision TEXT NOT NULL DEFAULT 'review';",
+  );
+
+  await pool.query(
+    'ALTER TABLE return_requests ADD COLUMN IF NOT EXISTS fraud_detected BOOLEAN NOT NULL DEFAULT false;',
+  );
+
+  await pool.query(
+    'CREATE INDEX IF NOT EXISTS idx_return_requests_created_at ON return_requests(created_at);',
+  );
+
   await pool.query(`
     CREATE TABLE IF NOT EXISTS risk_rules (
       id UUID PRIMARY KEY,
