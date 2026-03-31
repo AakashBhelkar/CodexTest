@@ -10,4 +10,9 @@ const authRouter = Router();
 authRouter.post('/signup', authRateLimiter, validateBody(authSchema), signup);
 authRouter.post('/login', authRateLimiter, validateBody(authSchema), login);
 
+const authRouter = Router();
+
+authRouter.post('/signup', signup);
+authRouter.post('/login', login);
+
 export { authRouter };

@@ -20,6 +20,8 @@ export const createReturnRequest = async (
         decision,
         fraud_detected
       ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        payment_type
+      ) VALUES ($1, $2, $3, $4, $5, $6)
     `,
     [
       requestId,
