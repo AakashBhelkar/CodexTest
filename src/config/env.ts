@@ -9,6 +9,7 @@ const requiredKeys = [
   'AWS_REGION',
   'SQS_QUEUE_URL',
 ] as const;
+const requiredKeys = ['JWT_SECRET', 'DATABASE_URL'] as const;
 
 for (const key of requiredKeys) {
   if (!process.env[key]) {
