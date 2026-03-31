@@ -302,3 +302,8 @@ await pool.query(
   - logging system
   - centralized error handling
   - monitoring hooks
+
+## Merge conflict help
+
+- PR #2 conflict resolution guide: `docs/MERGE_CONFLICT_RESOLUTION_PR2.md`
+- One-command helper script: `scripts/resolve_conflicts_pr2.sh`
