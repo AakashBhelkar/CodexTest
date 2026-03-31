@@ -1,0 +1,8 @@
+node_modules
+dist-server
+.git
+.gitignore
+npm-debug.log*
+python_service/.venv
+python_service/__pycache__
+**/__pycache__

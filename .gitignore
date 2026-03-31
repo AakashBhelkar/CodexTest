@@ -1,0 +1,14 @@
+node_modules
+.env*
+coverage
+dist-server
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+!**/.env.example
