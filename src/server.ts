@@ -23,16 +23,14 @@ const startServer = async (): Promise<void> => {
     app.listen(env.port, () => {
       logger.info('server_started', { port: env.port });
       emitMonitoringEvent('health', 'server_started', { port: env.port });
+      // eslint-disable-next-line no-console
+      console.log(`Auth API running on http://localhost:${env.port}`);
     });
   } catch (error) {
     logger.error('server_start_failed', {
       error: error instanceof Error ? error.message : 'unknown',
     });
     emitMonitoringEvent('error', 'server_start_failed');
-      // eslint-disable-next-line no-console
-      console.log(`Auth API running on http://localhost:${env.port}`);
-    });
-  } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Failed to start server:', error);
     process.exit(1);
