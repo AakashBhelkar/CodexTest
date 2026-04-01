@@ -307,3 +307,21 @@ await pool.query(
 
 - PR #2 conflict resolution guide: `docs/MERGE_CONFLICT_RESOLUTION_PR2.md`
 - One-command helper script: `scripts/resolve_conflicts_pr2.sh`
+
+## Troubleshooting
+
+### `tsx watch src/server.ts` → `Unexpected ")"` near `src/server.ts`
+
+Common reasons:
+- a half-resolved merge conflict left invalid tokens in `src/server.ts`
+- stale local file state after conflict resolution
+
+Fix steps:
+1. Re-sync branch and resolve conflicts fully.
+2. Ensure `src/server.ts` matches the latest version in this repo.
+3. Reinstall dependencies and retry:
+
+```bash
+npm install
+npm run dev
+```
